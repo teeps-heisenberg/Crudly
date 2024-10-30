@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crudly", "Crudly\Crudly.csproj", "{888CDEE4-2078-47AF-AA04-270E7C615C5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudlyCrudRazor_Temp", "CrudlyCrudRazor_Temp\CrudlyCrudRazor_Temp.csproj", "{1B36600F-0C09-4FC9-8354-C6FD663BD3B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrudlyCrudRazor_Temp", "CrudlyCrudRazor_Temp\CrudlyCrudRazor_Temp.csproj", "{1B36600F-0C09-4FC9-8354-C6FD663BD3B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
