@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Crudly.Migrations
+namespace Crudly.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryToDb : Migration
