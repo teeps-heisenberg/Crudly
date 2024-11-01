@@ -1,4 +1,4 @@
-namespace Crudly.Models
+namespace Crudly.Models.Models
 {
     public class ErrorViewModel
     {

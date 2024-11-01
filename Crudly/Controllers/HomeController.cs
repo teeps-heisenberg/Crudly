@@ -1,4 +1,4 @@
-using Crudly.Models;
+using Crudly.Models.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

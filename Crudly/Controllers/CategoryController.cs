@@ -1,19 +1,21 @@
-﻿using Crudly.Data;
-using Crudly.Models;
+﻿using Crudly.DataAccess.Data;
+using Crudly.DataAccess.Repository;
+using Crudly.Models.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Crudly.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public CategoryController(ApplicationDbContext context)
+
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            List<Category> categories = _context.Categories.ToList();
+            List<Category> categories = _unitOfWork.CategoryRepository.GetAll().ToList();
             return View(categories);
         }
 
@@ -27,9 +29,9 @@ namespace Crudly.Controllers
         public IActionResult Create(Category category)
         {
             if (ModelState.IsValid) 
-            { 
-                _context.Categories.Add(category);
-                _context.SaveChanges();
+            {
+                _unitOfWork.CategoryRepository.Add(category);
+                _unitOfWork.Save();
                 TempData["success"] = "Category Created Successfully";
                 return RedirectToAction("Index");
             }
@@ -38,7 +40,7 @@ namespace Crudly.Controllers
 
         public IActionResult Edit(int categoryId)
         {
-            Category category = _context.Categories.Where(c => c.Id == categoryId).FirstOrDefault();
+            Category category = _unitOfWork.CategoryRepository.Get(c => c.Id == categoryId);
             if(category == null)
             {
                 return NotFound();
@@ -51,8 +53,8 @@ namespace Crudly.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Categories.Update(category);
-                _context.SaveChanges();
+                _unitOfWork.CategoryRepository.Update(category);
+                _unitOfWork.Save();
                 TempData["success"] = "Category Updated Successfully";
                 return RedirectToAction("Index");
             }
@@ -62,7 +64,7 @@ namespace Crudly.Controllers
 
         public IActionResult Delete(int categoryId)
         {
-            Category category = _context.Categories.Where(c => c.Id == categoryId).FirstOrDefault();
+            Category category = _unitOfWork.CategoryRepository.Get(c => c.Id == categoryId); ;
             if (category == null)
             {
                 return NotFound();
@@ -73,13 +75,13 @@ namespace Crudly.Controllers
         [HttpPost,ActionName("Delete")]
         public IActionResult DeleteCategory(int id)
         {
-            Category category = _context.Categories.Where(c => c.Id == id).FirstOrDefault();
+            Category category = _unitOfWork.CategoryRepository.Get(c => c.Id == id); ;
             if (category == null)
             {
                 return NotFound();
             }
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            _unitOfWork.CategoryRepository.Remove(category);
+            _unitOfWork.Save();
             TempData["success"] = "Category Deleted Successfully";
             return RedirectToAction("Index");;
         }

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Crudly.Models
+namespace Crudly.Models.Models
 {
     public class Category
     {

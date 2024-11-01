@@ -1,7 +1,7 @@
-﻿using Crudly.Models;
+﻿using Crudly.Models.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Crudly.Data
+namespace Crudly.DataAccess.Data
 {
     public class ApplicationDbContext:DbContext
     {
